@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNetCoreSamples", "ASPNetCoreSamples\ASPNetCoreSamples.csproj", "{C721587E-CA30-4991-A5E4-BE320BE98A5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCoreIntegrationTests", "ASPNETCoreIntegrationTests\ASPNETCoreIntegrationTests.csproj", "{2CF0CC3F-62F9-46F0-BA6B-DDF1F06D1110}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C721587E-CA30-4991-A5E4-BE320BE98A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C721587E-CA30-4991-A5E4-BE320BE98A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C721587E-CA30-4991-A5E4-BE320BE98A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF0CC3F-62F9-46F0-BA6B-DDF1F06D1110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF0CC3F-62F9-46F0-BA6B-DDF1F06D1110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF0CC3F-62F9-46F0-BA6B-DDF1F06D1110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF0CC3F-62F9-46F0-BA6B-DDF1F06D1110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
