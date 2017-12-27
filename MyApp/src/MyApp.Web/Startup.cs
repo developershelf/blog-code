@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyApp.Infrastructure;
 
-namespace ASPNetCoreSamples
+namespace MyApp.Web
 {
     public class Startup
     {
@@ -24,12 +22,7 @@ namespace ASPNetCoreSamples
         {
             services.AddMvc();
         }
-
-        public virtual void ConfigureMockableServices(IServiceCollection services)
-        {
-            
-        }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -59,6 +52,18 @@ namespace ASPNetCoreSamples
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+        }
+
+        protected virtual void ConfigureMockableServices(IServiceCollection services)
+        {
+
+        }
+
+        protected virtual void SetupDatabase(IServiceCollection services)
+        {
+            services.AddDbContextPool<MyAppDbContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), b =>
+                    b.MigrationsAssembly("Idm.StagingProcessor.Application")));
         }
     }
 }
