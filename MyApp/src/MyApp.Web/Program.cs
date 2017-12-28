@@ -14,14 +14,17 @@ namespace MyApp.Web
 
         private static int GetHttpPort()
         {
-            var port = 8080;
+            var port = 2192;
             try
             {
                 port = Convert.ToInt32(Environment.GetEnvironmentVariable("HTTP_PORT"));
             }
             catch (Exception e)
             {
-                Console.Error.WriteLine("Something went really wrong getting the http port for the application, check if it set", e.Message);
+                Console.Error.WriteLine(
+                    "{0} Exception Message = {1}",
+                    "Something went really wrong getting the http port for the application, check if it set",
+                    e.Message);
             }
             return port;
         }

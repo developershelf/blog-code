@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyApp.Infrastructure;
 using MyApp.IntegrationTests.Grabber;
 
 namespace MyApp.IntegrationTests
@@ -51,13 +52,12 @@ namespace MyApp.IntegrationTests
             HttpClient.BaseAddress = new Uri("http://localhost");
 
             this.ConfigureTestFixture(this.server.Host.Services);
-            this.ConfigurateDatbase(this.server.Host.Services);
-            
+            //this.ConfigurateDatbase(this.server.Host.Services);
         }
 
         public HttpClient HttpClient { get; }
 
-        public DbContext DbContext { get; private set; }
+        public MyAppDbContext DbContext { get; private set; }
 
         public IRequestGrabber RequestGrabber { get; set; }
 
@@ -115,8 +115,7 @@ namespace MyApp.IntegrationTests
 
         private void ConfigurateDatbase(IServiceProvider provider)
         {
-            this.DbContext = provider.GetService<DbContext>();
-            //this.DbContext.Database.OpenConnection();
+            this.DbContext = provider.GetService<MyAppDbContext>();
             this.DbContext.Database.Migrate();
         }
 
@@ -138,6 +137,11 @@ namespace MyApp.IntegrationTests
         public void Dispose()
         {
             HttpClient.Dispose();
+
+            if (this.DbContext == null)
+            {
+                return;
+            }
             this.DbContext.Database.EnsureDeleted();
             this.DbContext.Dispose();
         }
